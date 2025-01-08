@@ -2,7 +2,7 @@
   "name": "siyuan_mobile_marketplace",
   "author": "zxkmm",
   "url": "https://github.com/zxkmm/siyuan_mobile_marketplace",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "minAppVersion": "3.0.12",
   "backends": [
     "windows",
