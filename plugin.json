@@ -1,8 +1,8 @@
 {
-  "name": "plugin-sample-vite-svelte",
-  "author": "frostime",
-  "url": "https://github.com/siyuan-note/plugin-sample-vite-svelte",
-  "version": "0.3.6",
+  "name": "siyuan_mobile_marketplace",
+  "author": "zxkmm",
+  "url": "https://github.com/zxkmm/siyuan_mobile_marketplace",
+  "version": "0.0.1",
   "minAppVersion": "3.0.12",
   "backends": [
     "windows",
@@ -21,12 +21,12 @@
     "desktop-window"
   ],
   "displayName": {
-    "en_US": "Plugin sample with vite and svelte",
-    "zh_CN": "插件样例 vite + svelte 版"
+    "en_US": "SiYuan Mobile Marketplace",
+    "zh_CN": "思源手机版集市"
   },
   "description": {
-    "en_US": "SiYuan plugin sample with vite and svelte",
-    "zh_CN": "使用 vite 和 svelte 开发的思源插件样例"
+    "en_US": "SiYuan Mobile Marketplace",
+    "zh_CN": "思源手机版集市"
   },
   "readme": {
     "en_US": "README.md",
@@ -39,7 +39,8 @@
   },
   "keywords": [
     "plugin",
-    "sample",
-    "插件样例"
+    "marketplace",
+    "集市",
+    "zxkmm"
   ]
 }
