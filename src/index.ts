@@ -256,7 +256,127 @@ export default class PluginSample extends Plugin {
         iframeContainer.appendChild(iframe);
         container.appendChild(iframeContainer);
 
-        return null; //this is a work around, this will pop out a err but harmless, idk how to use SvelteDialog
+        return null;
+      },
+    });
+  }
+
+
+    private showFullSettings() {
+    svelteDialog({
+      title: `SiYuan Marketplace`,
+      width: this.isMobile ? "100vw" : "50vw",
+      height: this.isMobile ? "100vh" : "80vh",
+      constructor: (container: HTMLElement) => {
+        // div for iframe
+        const iframeContainer = document.createElement("div");
+        iframeContainer.style.cssText =
+          "width: 100%; height: 100%; overflow: hidden;";
+
+        const iframe = document.createElement("iframe");
+        iframe.src = "http://127.0.0.1:6806/stage/build/desktop/"; //TODO: try to fetch the instance port
+        iframe.style.cssText = "width: 100%; height: 100%; border: none;";
+
+        iframe.onload = () => {
+          const iframeDoc =
+            iframe.contentDocument || iframe.contentWindow.document;
+
+          // injefct css
+          const customStyle = document.createElement("style");
+          customStyle.textContent = `
+                        /* the setting dialog*/
+                        div[data-key="dialog-setting"] .b3-dialog__container {
+                            width: 100vw !important;
+                            height: 100vh !important;
+                            max-width: 1280px !important;
+                        }
+
+
+
+                        /* card opt: layout*/
+
+
+
+                        .item__main {
+                            display: none !important;
+                        }
+                    `;
+
+          customStyle.textContent += this.settingUtils.get(
+            "customCssForMarketplaceMobileView"
+          );
+          iframeDoc.head.appendChild(customStyle);
+
+          // i know i know this is a work around, idk how to trigger the setting dialog
+          const clickSequence = async () => { // go settings
+            try {
+              const workspaceBtn = await waitForElement(
+                iframeDoc,
+                "#barWorkspace"
+              );
+              workspaceBtn.click();
+              console.log("Clicked workspace button");
+
+              const configBtn = await waitForElement(
+                iframeDoc,
+                'button[data-id="config"]'
+              );
+              configBtn.click();
+              console.log("Clicked config button");
+
+              const bazaarLi = await waitForElement(
+                iframeDoc,
+                'li[data-name="bazaar"]'
+              );
+              // bazaarLi.click();
+              console.log("Clicked bazaar li");
+            } catch (error) {
+              console.error("Error during click sequence:", error);
+            }
+          };
+
+          // wait for element appear helper
+          const waitForElement = (
+            doc: Document,
+            selector: string,
+            timeout = 5000
+          ): Promise<HTMLElement> => {
+            return new Promise((resolve, reject) => {
+              const element = doc.querySelector(selector);
+              if (element) {
+                resolve(element as HTMLElement);
+                return;
+              }
+
+              const observer = new MutationObserver(() => {
+                const element = doc.querySelector(selector);
+                if (element) {
+                  observer.disconnect();
+                  resolve(element as HTMLElement);
+                }
+              });
+
+              observer.observe(doc.body, {
+                childList: true,
+                subtree: true,
+              });
+
+              setTimeout(() => {
+                observer.disconnect();
+                reject(new Error(`Timeout waiting for element: ${selector}`));
+              }, timeout);
+            });
+          };
+
+          // i know i know this is a work around, idk how to trigger the setting dialog
+          clickSequence();
+        };
+
+        // append
+        iframeContainer.appendChild(iframe);
+        container.appendChild(iframeContainer);
+
+        return null; 
       },
     });
   }
@@ -293,6 +413,14 @@ export default class PluginSample extends Plugin {
       label: "Marketplace",
       click: () => {
         this.showMarketplace();
+      },
+    });
+
+    menu.addItem({
+      icon: "iconSettings",
+      label: "Full Settings",
+      click: () => {
+        this.showFullSettings();
       },
     });
 

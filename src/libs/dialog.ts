@@ -152,7 +152,9 @@ export const svelteDialog = (args: {
     let component = args.constructor(container);
     const { dialog, close } = simpleDialog({
         ...args, ele: container, callback: () => {
-            component.$destroy();
+            if (component && component.$destroy) {
+                component.$destroy();
+            }
             if (args.callback) args.callback();
         }
     });
