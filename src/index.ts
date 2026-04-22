@@ -121,41 +121,34 @@ export default class PluginSample extends Plugin {
           // injefct css
           const customStyle = document.createElement("style");
           customStyle.textContent = `
-                        /* the setting dialog*/
+                        /* setting dialog full screen*/
                         div[data-key="dialog-setting"] .b3-dialog__container {
                             width: 100vw !important;
                             height: 100vh !important;
                             max-width: 1280px !important;
                         }
 
-                        /* the side bar of setting dialog*/
+                        /* get rid of the side bar of setting dialog*/
                         .b3-tab-bar.b3-list.b3-list--background{
                             display: none !important;
                         }
 
-                        /* card opt: layout*/
-                        .b3-card {
-                            display: flex;
-                            flex-direction: column;
-                        }
-
-                        .b3-card__img {
-                            display: none !important;
-                        }
-
-                        .fn__flex-1 {
-                            display: inline-block;
-                            vertical-align: top;
-                        }
-
-                        .b3-card__actions {
-                            margin-top: 10px;
-                            display: flex;
-                            justify-content: flex-end;
-                        }
-
-                        .item__main {
-                            display: none !important;
+                        /* let the item__main can be on bottom of item__side on narrow screens */
+                        @media (max-width: 768px) {
+                            .config-bazaar__readme {
+                                display: block !important;
+                                overflow-y: auto !important;
+                            }
+                            .item__side {
+                                width: 100% !important;
+                                max-width: none !important;
+                                border-right: none !important;
+                            }
+                            .item__main {
+                                width: 100% !important;
+                                position: static !important;
+                                display: block !important;
+                            }
                         }
                     `;
 
@@ -261,8 +254,7 @@ export default class PluginSample extends Plugin {
     });
   }
 
-
-    private showFullSettings() {
+  private showFullSettings() {
     svelteDialog({
       title: `SiYuan Marketplace`,
       width: this.isMobile ? "100vw" : "50vw",
@@ -291,14 +283,22 @@ export default class PluginSample extends Plugin {
                             max-width: 1280px !important;
                         }
 
-
-
-                        /* card opt: layout*/
-
-
-
-                        .item__main {
-                            display: none !important;
+                        /* let the item__main can be on bottom of item__side on narrow screens */
+                        @media (max-width: 768px) {
+                            .config-bazaar__readme {
+                                display: block !important;
+                                overflow-y: auto !important;
+                            }
+                            .item__side {
+                                width: 100% !important;
+                                max-width: none !important;
+                                border-right: none !important;
+                            }
+                            .item__main {
+                                width: 100% !important;
+                                position: static !important;
+                                display: block !important;
+                            }
                         }
                     `;
 
@@ -328,7 +328,7 @@ export default class PluginSample extends Plugin {
                 iframeDoc,
                 'li[data-name="bazaar"]'
               );
-              // bazaarLi.click();
+              bazaarLi.click();
               console.log("Clicked bazaar li");
             } catch (error) {
               console.error("Error during click sequence:", error);
