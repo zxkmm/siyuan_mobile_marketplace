@@ -143,11 +143,15 @@ export default class PluginSample extends Plugin {
                                 width: 100% !important;
                                 max-width: none !important;
                                 border-right: none !important;
+                                height: auto !important;
+                                overflow: visible !important;
                             }
                             .item__main {
                                 width: 100% !important;
                                 position: static !important;
                                 display: block !important;
+                                height: auto !important;
+                                overflow: visible !important;
                             }
                         }
                     `;
@@ -293,11 +297,15 @@ export default class PluginSample extends Plugin {
                                 width: 100% !important;
                                 max-width: none !important;
                                 border-right: none !important;
+                                height: auto !important;
+                                overflow: visible !important;
                             }
                             .item__main {
                                 width: 100% !important;
                                 position: static !important;
                                 display: block !important;
+                                height: auto !important;
+                                overflow: visible !important;
                             }
                         }
                     `;
