@@ -111,7 +111,7 @@ export default class PluginSample extends Plugin {
           "width: 100%; height: 100%; overflow: hidden;";
 
         const iframe = document.createElement("iframe");
-        iframe.src = "http://127.0.0.1:6806/stage/build/desktop/"; //TODO: try to fetch the instance port
+        iframe.src = "/stage/build/desktop/"; // relative URL keeps same origin as the host app
         iframe.style.cssText = "width: 100%; height: 100%; border: none;";
 
         iframe.onload = () => {
@@ -246,7 +246,7 @@ export default class PluginSample extends Plugin {
           "width: 100%; height: 100%; overflow: hidden;";
 
         const iframe = document.createElement("iframe");
-        iframe.src = "http://127.0.0.1:6806/stage/build/desktop/";
+        iframe.src = "/stage/build/desktop/";
         iframe.style.cssText = "width: 100%; height: 100%; border: none;";
 
         // append
@@ -270,7 +270,7 @@ export default class PluginSample extends Plugin {
           "width: 100%; height: 100%; overflow: hidden;";
 
         const iframe = document.createElement("iframe");
-        iframe.src = "http://127.0.0.1:6806/stage/build/desktop/"; //TODO: try to fetch the instance port
+        iframe.src = "/stage/build/desktop/"; // relative URL keeps same origin as the host app
         iframe.style.cssText = "width: 100%; height: 100%; border: none;";
 
         iframe.onload = () => {
@@ -400,7 +400,7 @@ export default class PluginSample extends Plugin {
           "width: 100%; height: 100%; overflow: hidden;";
 
         const iframe = document.createElement("iframe");
-        iframe.src = "http://127.0.0.1:6806/stage/build/mobile/";
+        iframe.src = "/stage/build/mobile/";
         iframe.style.cssText = "width: 100%; height: 100%; border: none;";
 
         // append
