@@ -39,8 +39,8 @@ export default class PluginSample extends Plugin {
       key: "customCssForMarketplaceMobileView",
       value: "",
       type: "textarea",
-      title: "Custom CSS for Marketplace Mobile View",
-      description: "Input description",
+      title: this.i18n.settingCustomCssTitle,
+      description: this.i18n.settingCustomCssDesc,
     });
     // this.settingUtils.addItem({
     //   key: "ifShowTopBarIconOnDesktopView",
@@ -71,7 +71,7 @@ export default class PluginSample extends Plugin {
 
     const topBarElement = this.addTopBar({
       icon: "iconBazaar",
-      title: "Marketplace",
+      title: this.i18n.topBarTitle,
       position: "right",
       callback: () => {
         if (this.isMobile) {
@@ -101,7 +101,7 @@ export default class PluginSample extends Plugin {
 
   private showMarketplace() {
     svelteDialog({
-      title: `SiYuan Marketplace`,
+      title: this.i18n.dialogMarketplaceTitle,
       width: this.isMobile ? "100vw" : "50vw",
       height: this.isMobile ? "100vh" : "80vh",
       constructor: (container: HTMLElement) => {
@@ -129,7 +129,8 @@ export default class PluginSample extends Plugin {
                         }
 
                         /* get rid of the side bar of setting dialog*/
-                        .b3-tab-bar.b3-list.b3-list--background{
+                        .b3-tab-bar.b3-list.b3-list--background, /* old SiYuan versions */
+                        .config__side.b3-list.b3-list--background {
                             display: none !important;
                         }
 
@@ -237,7 +238,7 @@ export default class PluginSample extends Plugin {
 
   private showDesktopView() {
     svelteDialog({
-      title: `SiYuan Desktop View`,
+      title: this.i18n.dialogDesktopViewTitle,
       width: this.isMobile ? "100vw" : "50vw",
       height: this.isMobile ? "100vh" : "80vh",
       constructor: (container: HTMLElement) => {
@@ -260,7 +261,7 @@ export default class PluginSample extends Plugin {
 
   private showFullSettings() {
     svelteDialog({
-      title: `SiYuan Marketplace`,
+      title: this.i18n.dialogFullSettingsTitle,
       width: this.isMobile ? "100vw" : "50vw",
       height: this.isMobile ? "100vh" : "80vh",
       constructor: (container: HTMLElement) => {
@@ -306,6 +307,41 @@ export default class PluginSample extends Plugin {
                                 display: block !important;
                                 height: auto !important;
                                 overflow: visible !important;
+                            }
+
+                            /* new setting UI: stack side panel on top as a horizontal tab strip */
+                            .config__panel {
+                                flex-direction: column !important;
+                            }
+                            .config__side {
+                                width: 100% !important;
+                                max-width: none !important;
+                                height: auto !important;
+                                flex: 0 0 auto !important;
+                                border-right: none !important;
+                                border-bottom: 1px solid var(--b3-border-color);
+                            }
+                            .config__side .config__tab-title {
+                                display: none !important;
+                            }
+                            .config__side .config__tab-head {
+                                padding: 4px 8px !important;
+                            }
+                            .config__side .config__tab-scroll {
+                                display: flex !important;
+                                flex-direction: row !important;
+                                overflow-x: auto !important;
+                                overflow-y: hidden !important;
+                                max-height: none !important;
+                            }
+                            .config__side .config__tab-scroll .b3-list-item {
+                                flex: 0 0 auto !important;
+                                white-space: nowrap !important;
+                            }
+                            .config__tab-wrap {
+                                flex: 1 1 auto !important;
+                                min-height: 0 !important;
+                                overflow: auto !important;
                             }
                         }
                     `;
@@ -384,14 +420,14 @@ export default class PluginSample extends Plugin {
         iframeContainer.appendChild(iframe);
         container.appendChild(iframeContainer);
 
-        return null; 
+        return null;
       },
     });
   }
 
   private showMobileView() {
     svelteDialog({
-      title: `SiYuan Mobile View`,
+      title: this.i18n.dialogMobileViewTitle,
       width: this.isMobile ? "100vw" : "50vw",
       height: this.isMobile ? "100vh" : "80vh",
       constructor: (container: HTMLElement) => {
@@ -413,12 +449,10 @@ export default class PluginSample extends Plugin {
   }
 
   private addMenu(rect?: DOMRect) {
-    const menu = new Menu("topBarSample", () => {
-      console.log(this.i18n.byeMenu);
-    });
+    const menu = new Menu("siyuanMobileMarketplaceMenu");
     menu.addItem({
       icon: "iconBazaar",
-      label: "Marketplace",
+      label: this.i18n.menuMarketplace,
       click: () => {
         this.showMarketplace();
       },
@@ -426,7 +460,7 @@ export default class PluginSample extends Plugin {
 
     menu.addItem({
       icon: "iconSettings",
-      label: "Full Settings",
+      label: this.i18n.menuFullSettings,
       click: () => {
         this.showFullSettings();
       },
@@ -434,7 +468,7 @@ export default class PluginSample extends Plugin {
 
     menu.addItem({
       icon: "iconDock", // sorry too lazy to do svg
-      label: "Desktop View",
+      label: this.i18n.menuDesktopView,
       click: () => {
         this.showDesktopView();
       },
@@ -442,7 +476,7 @@ export default class PluginSample extends Plugin {
 
     menu.addItem({
       icon: "iconLayout", // sorry too lazy to do svg
-      label: "Mobile View",
+      label: this.i18n.menuMobileView,
       click: () => {
         this.showMobileView();
       },
@@ -452,13 +486,12 @@ export default class PluginSample extends Plugin {
 
     menu.addItem({
       icon: "iconBug",
-      label:
-        "not sure if close dialog would clean up things, better reload after you use these things",
+      label: this.i18n.menuReloadHint,
       type: "readonly",
     });
     menu.addItem({
       icon: "iconRefresh",
-      label: "Reload",
+      label: this.i18n.menuReload,
       click: () => {
         window.location.reload();
       },

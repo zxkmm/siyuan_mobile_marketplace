@@ -1,20 +1,17 @@
 {
-    "addTopBarIcon": "使用插件添加一个顶栏按钮",
-    "cancel": "取消",
-    "save": "保存",
-    "byeMenu": "再见，菜单！",
-    "helloPlugin": "你好，插件！",
-    "byePlugin": "再见，插件！",
-    "showDialog": "弹出一个对话框",
-    "removedData": "数据已删除",
-    "confirmRemove": "确认删除 ${name} 中的数据？",
-    "insertEmoji": "插入表情",
-    "removeSpace": "移除空格",
-    "getTab": "在日志中打印出已打开的所有自定义页签",
-    "name": "思源",
-    "hello": {
-        "makesure": "使用这个模板之前，请阅读<a href=\"https://github.com/siyuan-note/plugin-sample\">官方教程</a>, 确保自己已经理解了插件的基本开发流程。"
-    },
+    "topBarTitle": "集市",
+    "menuMarketplace": "集市",
+    "menuFullSettings": "完整设置",
+    "menuDesktopView": "桌面端视图",
+    "menuMobileView": "手机端视图",
+    "menuReload": "重新加载",
+    "menuReloadHint": "不确定关闭对话框是否会清理干净，用完这些功能后最好重新加载",
+    "dialogMarketplaceTitle": "思源集市",
+    "dialogFullSettingsTitle": "思源设置",
+    "dialogDesktopViewTitle": "思源桌面端视图",
+    "dialogMobileViewTitle": "思源手机端视图",
+    "settingCustomCssTitle": "集市手机版视图的自定义 CSS",
+    "settingCustomCssDesc": "注入到集市/设置 iframe 中的额外 CSS",
     "hintTitle": "关于",
     "hintDesc": "<a href='https://github.com/siyuan-note/plugin-sample-vite-svelte'>🔗 plugin-sample-vite-svelte</a><br>💻 @frostime<br>💻 @88250<br>💻 @zxkmm"
 }
