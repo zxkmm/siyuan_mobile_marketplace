@@ -2,7 +2,7 @@
   "name": "siyuan_mobile_marketplace",
   "author": "zxkmm",
   "url": "https://github.com/zxkmm/siyuan_mobile_marketplace",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "minAppVersion": "3.0.12",
   "backends": [
     "windows",
@@ -29,12 +29,13 @@
     "zh_CN": "思源手机版集市"
   },
   "readme": {
+    "default": "README.md",
     "en_US": "README.md",
     "zh_CN": "README_zh_CN.md"
   },
   "funding": {
     "custom": [
-      "https://zxkmm.com/donate"
+      "https://pipe.b3log.org/blogs/zxkmm/articles/2025/02/08/1738993480704"
     ]
   },
   "keywords": [
